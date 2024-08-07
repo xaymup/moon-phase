@@ -81,14 +81,14 @@ function getMoonPhasePosition(date = new Date()) {
   
   // Calculate the phase of the moon
   const phaseIndex = (daysSinceNewMoon % lunarCycle) / lunarCycle;
-  
+  console.log(phaseIndex);
   // Return 3D position based on the moon phase
   return getMoonPhasePositionFromIndex(phaseIndex);
 }
 
 function getMoonPhasePositionFromIndex(phaseIndex) {
   // Define phase boundaries
-  const boundaries = [0, 0.03, 0.25, 0.27, 0.50, 0.53, 0.75, 0.77, 1];
+  const boundaries = [0, 0.03, 0.25, 0.37, 0.50, 0.53, 0.65, 0.99, 1];
   // Define positions for each phase
   const positions = [
     [0, 0, -50],    // New Moon
@@ -128,19 +128,26 @@ function onResize() {
 
 window.addEventListener('resize', onResize, false);
 
-var today = new Date().toISOString().split('T')[0];
-        document.getElementById('datePicker').value = today;
-
-        // Handle date change event
-        document.getElementById('datePicker').addEventListener('change', (event) => {
-          today = document.getElementById('datePicker').value;
-        });
 
 
 function animate() {
 	requestAnimationFrame( animate );
   const moonPosition = getMoonPhasePosition(new Date(today));
-  light.position.set(moonPosition[0],moonPosition[1],moonPosition[2]);
+  const targetPosition = new THREE.Vector3(moonPosition[0],moonPosition[1],moonPosition[2]); 
+  light.position.lerp(targetPosition, 0.1);
+  moon.rotation.y += 0.0002;
+  moon.rotation.x += 0.0001;
+  world.rotation.y += 0.0001;
+  world.rotation.x += 0.0001;
 	renderer.render( scene, camera );
 }
 animate();
+
+
+var today = new Date().toISOString().split('T')[0];
+
+document.getElementById('datePicker').value = today;
+document.getElementById('datePicker').addEventListener('change', (event) => {
+  today = document.getElementById('datePicker').value;
+  
+});
