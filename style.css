@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+    background-color: black;
+  }
+  
+  canvas {
+    width: 320px;
+    height: 240px;
+    vertical-align: bottom;
+    displau: block;
+  }
+  .container { padding: 20px; }
+  label { margin-right: 10px; }
