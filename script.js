@@ -92,13 +92,13 @@ function getMoonPhasePositionFromIndex(phaseIndex) {
   // Define positions for each phase
   const positions = [
     [0, 0, -50],    // New Moon
-    [-35, 0, -35],  // Waxing Crescent
-    [-50, 0, 0],    // First Quarter
-    [-35, 0, 35],   // Waxing Gibbous
+    [35, 0, -35],  // Waxing Crescent
+    [50, 0, 0],    // First Quarter
+    [35, 0, 35],   // Waxing Gibbous
     [0, 0, 50],     // Full Moon
-    [35, 0, 35],    // Waning Gibbous
-    [50, 0, 0],     // Last Quarter
-    [35, 0, -35]    // Waning Crescent
+    [-35, 0, 35],    // Waning Gibbous
+    [-50, 0, 0],     // Last Quarter
+    [-35, 0, -35]    // Waning Crescent
   ];
 
   // Find the appropriate segment
